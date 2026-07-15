@@ -17,9 +17,8 @@ def _probe_Openai():
         model.embed_query("probe")
         logfire.info("OpenAI embeddings ready(text-embeddings-3-small,1536-dim).")
         return model
-    except Exception as e:                                 # changed to the original code afterwards
-        print("Actual OpenAI Error:")
-        print(e)
+    except Exception as e:
+        logfire.warning(f"OpenAi probe failed: {e}. Will use sentence-transformers fallback.")
         return None
     
 def _load_fallback():
